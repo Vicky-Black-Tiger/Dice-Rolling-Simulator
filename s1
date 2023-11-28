@@ -1,0 +1,75 @@
+import random
+import time
+import os
+
+dice_art = {
+    1: ("┌─────────┐",
+        "│         │",
+        "│    ●    │",
+        "│         │",
+        "└─────────┘"),
+    2: ("┌─────────┐",
+        "│  ●      │",
+        "│         │",
+        "│      ●  │",
+        "└─────────┘"),
+    3: ("┌─────────┐",
+        "│  ●      │",
+        "│    ●    │",
+        "│      ●  │",
+        "└─────────┘"),
+    4: ("┌─────────┐",
+        "│  ●   ●  │",
+        "│         │",
+        "│  ●   ●  │",
+        "└─────────┘"),
+    5: ("┌─────────┐",
+        "│  ●   ●  │",
+        "│    ●    │",
+        "│  ●   ●  │",
+        "└─────────┘"),
+    6: ("┌─────────┐",
+        "│  ●   ●  │",
+        "│  ●   ●  │",
+        "│  ●   ●  │",
+        "└─────────┘")
+}
+
+def clear_screen():
+    # Function to clear the screen
+     os.system('cls')
+
+def print_dice(dice):
+    for line in range(5):
+        for die in dice:
+            print(dice_art.get(die)[line], end="")
+        print()
+    
+def Print_numbers(dice_list):
+    s="     "
+    for i in dice_list:
+        print(f"{s}{i}{s}",end="")
+
+def totalof(dice_list):    
+    total=0
+    for i in dice_list:
+        total+=i  
+    print(f"\nTotal of {num_of_dice} dice: {total}")
+
+def roll_dice(num_of_dice):
+    dice_list = []
+    for _ in range(num_of_dice):
+        dice_list.append(random.randint(1, 6))
+    print_dice(dice_list)
+    Print_numbers(dice_list)
+    totalof(dice_list)
+
+def animate_dice_rolling(num_of_dice, num_of_rolls):
+    for i in range(num_of_rolls):
+        clear_screen()
+        roll_dice(num_of_dice)  
+        time.sleep(0.3)  # rolling speed
+
+num_of_dice = int(input("How many dice?: "))
+num_of_rolls = 10  # Number of times the dice will roll
+animate_dice_rolling(num_of_dice, num_of_rolls) 
